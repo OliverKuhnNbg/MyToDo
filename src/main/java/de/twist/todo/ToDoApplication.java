@@ -26,9 +26,12 @@ public class ToDoApplication {
 	@Bean
     CommandLineRunner init(UserService userService) {
         return args -> {
-            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
+            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel" , "Oliver").forEach(name -> {
                 User user = new User();
                 user.setEmail(name.toLowerCase() + "@domain.com");
+                if(name.equals("Oliver")) {
+                	user.setEmail(name.toLowerCase() + "@king.com");
+                }
                 user.setName(name);
                 
                 if(userService.isUserAlreadyStored(user) == false) {
@@ -39,8 +42,8 @@ public class ToDoApplication {
             List<User> allUsers = userService.findAll();
             for(User u : allUsers) {
             	System.out.println(u.getName());
+            	System.out.println(u.getEmail() +"\n");
             }
-            
         };
     }
 
