@@ -1,5 +1,6 @@
 package de.twist.todo;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import de.twist.todo.service.UserService;
 @SpringBootApplication
 public class ToDoApplication {
 	
+	@SuppressWarnings("unused")
 	@Autowired
 	private UserService userService;
 
@@ -28,9 +30,16 @@ public class ToDoApplication {
                 User user = new User();
                 user.setEmail(name.toLowerCase() + "@domain.com");
                 user.setName(name);
-                userService.saveUser(user);
+                
+                if(userService.isUserAlreadyStored(user) == false) {
+                	userService.saveUser(user);
+                }
             });
-            userService.findAll().forEach(System.out::println);
+            
+            List<User> allUsers = userService.findAll();
+            for(User u : allUsers) {
+            	System.out.println(u.getName());
+            }
             
         };
     }
