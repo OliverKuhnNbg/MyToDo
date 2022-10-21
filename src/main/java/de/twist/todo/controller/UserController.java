@@ -13,7 +13,6 @@ import de.twist.todo.model.User;
 import de.twist.todo.repository.UserRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
 	@Autowired
@@ -21,11 +20,13 @@ public class UserController {
 
     @GetMapping("/users")
     public List<User> getUsers() {
+    	System.out.println();
         return (List<User>) userRepository.findAll();
     }
 
-    @PostMapping("/users")
+    @PostMapping("/save-users")
     void addUser(@RequestBody User user) {
         userRepository.save(user);
     }
+    
 }
