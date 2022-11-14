@@ -12,7 +12,7 @@ export class UserService {
 
   	
 	constructor(private http: HttpClient) {
-		this.usersUrl = 'http://localhost:6060/users';
+		this.usersUrl = 'http://localhost:8083/users';
 	}
 
 	public findAll(): Observable<User[]> {
