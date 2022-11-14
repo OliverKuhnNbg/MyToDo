@@ -3,7 +3,6 @@ package de.twist.todo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,10 +22,15 @@ public class UserController {
     	System.out.println();
         return (List<User>) userRepository.findAll();
     }
+    
+    @GetMapping("/first-user")
+    public User getFirstUser() {
+    	System.out.println();
+        return userRepository.findAll().get(0);
+    }
 
     @PostMapping("/save-users")
     void addUser(@RequestBody User user) {
         userRepository.save(user);
     }
-    
 }
