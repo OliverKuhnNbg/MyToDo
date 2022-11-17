@@ -19,6 +19,6 @@ export class UserService {
 		return this.http.get<User[]>(this.usersUrl);
 	}
 	public save(user: User) {
-    	return this.http.post<User>(this.usersUrl, user);
+    	return this.http.post<User>('http://localhost:8083/save-user', user);
     }
 }
